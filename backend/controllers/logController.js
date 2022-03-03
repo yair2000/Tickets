@@ -18,7 +18,7 @@ const logUser = asyncHandler(async (req, res) =>{
     }
     else{
        res.status(401);
-       throw new Error("Invalid Login Data");
+       throw new Error("Email Or Password Is Incorrect");
     }
  });
 

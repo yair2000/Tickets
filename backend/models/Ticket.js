@@ -10,8 +10,7 @@ const TicketSchema = new Schema({
   product: {
     type: String,
     required: [true, "Please select a product"],
-    enum: ["Laptop", "Smartphone", "Lamp", "Printer"]
-    // enum: []
+    enum: []
   },
   description: {
     type: String,
@@ -21,7 +20,7 @@ const TicketSchema = new Schema({
     type: String,
     required: true,
     enum: ["New", "Open", "Closed"],
-    default: "New",
+    default: ""
   },
   date: {
     type: Date,

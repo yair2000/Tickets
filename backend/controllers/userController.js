@@ -8,5 +8,5 @@ const getUser = asyncHandler(async (req, res) =>{
     }
     res.status(200).json(user);
     return user
-})
-module.exports = getUser
+});
+module.exports = getUser;

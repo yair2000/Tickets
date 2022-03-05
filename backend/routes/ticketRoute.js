@@ -7,4 +7,4 @@ const { protect } = require("../middleware/authMiddleware");
 
 router.route("/").get(protect, getTickets).post(protect, createTicket);
 
-module.export = router
+module.exports = router

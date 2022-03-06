@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const {createTicket, getTicket, getTickets, updateTicket, deleteTicket} = require("../controllers/ticketController");
+const createTicket = require("../tickets/create");
+const {getTicket, getTickets} = require("../tickets/read");
+const updateTicket = require("../tickets/update");
+const deleteTicket = require("../tickets/delete");
 
 const { protect } = require("../middleware/authMiddleware");
 

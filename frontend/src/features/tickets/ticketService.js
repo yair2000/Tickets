@@ -13,7 +13,7 @@ const createTicket = async(ticketData, token) =>{
 }
 
 const ticketService = {
-   createTicket,
+   createNewTicket: createTicket,
 }
 
 export default ticketService;

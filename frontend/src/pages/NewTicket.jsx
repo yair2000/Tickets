@@ -38,6 +38,14 @@ function NewTicket(){
 
      dispatch(createNewTicket({product, description}));
   }
+  
+  const productHandler=({ currentTarget: input }) =>{
+     setNewTicket({ ...newTicket, [input.name]: input.value });
+  }
+
+  const descHandler=({ currentTarget: input }) =>{
+     setNewTicket({ ...newTicket, [input.name]: input.value });
+  }
 
   if(isLoading){
     return <Spinner/>
@@ -72,7 +80,7 @@ function NewTicket(){
               name="product"
               id="product"
               value={product}
-              onChange={(e) => setNewTicket(e.target.value)}>
+              onChange={productHandler}>
               <option value="phone">Phone</option>
               <option value="tablet">Tablet</option>
               <option value="laptop">Laptop</option>
@@ -87,7 +95,7 @@ function NewTicket(){
               id="description"
               placeholder="Description"
               value={description}
-              onChange={(e) => setNewTicket(e.target.value)}/>
+              onChange={descHandler}/>
           </div>
 
           <div className="form-group">

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { createNewTicket, reset } from "../features/tickets/ticketSlice"
+import BackButton from "../components/BackButton"
 import Spinner from '../components/Spinner'
 
 function NewTicket(){
   const {user} = useSelector((state) => state.auth);
-  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.ticket);
+  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.tickets);
 
   const [newTicket, setNewTicket] = useState({
      name: user.name,
@@ -29,7 +30,7 @@ function NewTicket(){
       dispatch(reset);
       navigate("/tickets");
     }
-    dispatch(reset())
+    dispatch(reset());
 
   }, [dispatch, isError, isSuccess, navigate, message]);
 
@@ -38,7 +39,7 @@ function NewTicket(){
 
      dispatch(createNewTicket({product, description}));
   }
-  
+
   const productHandler=({ currentTarget: input }) =>{
      setNewTicket({ ...newTicket, [input.name]: input.value });
   }
@@ -53,6 +54,7 @@ function NewTicket(){
 
   return(
     <>
+      <BackButton url="/" />
       <section className="heading">
         <h1>Create A New Ticket</h1>
         <p>Please Fill Out The Form Below</p>
@@ -81,10 +83,10 @@ function NewTicket(){
               id="product"
               value={product}
               onChange={productHandler}>
-              <option value="phone">Phone</option>
-              <option value="tablet">Tablet</option>
-              <option value="laptop">Laptop</option>
-              <option value="other">Other</option>
+              <option value="Phone">Phone</option>
+              <option value="Tablet">Tablet</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div className="form-group">

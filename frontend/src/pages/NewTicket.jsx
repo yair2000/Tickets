@@ -13,7 +13,7 @@ function NewTicket(){
   const [newTicket, setNewTicket] = useState({
      name: user.name,
      email: user.email,
-     product: "",
+     product: "Phone",
      description: ""
 
   });

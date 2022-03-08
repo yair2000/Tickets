@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "/api/tickets"
+const API_URL = "/api/tickets/"
 
 const createTicket = async(ticketData, token) =>{
    const config = {
@@ -32,10 +32,21 @@ const getTickets = async(token) =>{
    return response.data
 }
 
+const closeTicket = async(ticketId, token) =>{
+   const config = {
+      headers: {
+         Authorization: `Bearer ${token}`
+      }
+   }
+   const response = await axios.put(API_URL + ticketId, { status: "Closed" }, config);
+   return response.data
+}
+
 const ticketService = {
    createNewTicket: createTicket,
    getTickets: getTickets,
-   getTicket: getTicket
+   getTicket: getTicket,
+   closeTicket: closeTicket
 }
 
 export default ticketService;

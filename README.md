@@ -1,7 +1,10 @@
 Tickets - Create your personal tickets
 
 Backend built in NodeJS, express and mongoose with integration to MongoDB
+
 Frontend built in React and Redux
+
+
 
 You can create tickets and view them
 ![Homepage](https://user-images.githubusercontent.com/32851854/157657267-a07bb80c-5f74-4fb1-a789-99da37f2df4e.png)

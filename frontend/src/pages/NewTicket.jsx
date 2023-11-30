@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
-import { createNewTicket, reset } from "../features/tickets/ticketSlice"
-import BackButton from "../components/BackButton"
-import Spinner from '../components/Spinner'
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { createNewTicket, reset } from "../features/tickets/ticketSlice";
+import BackButton from "../components/BackButton";
+import Spinner from "../components/Spinner";
 
 function NewTicket(){
-  const {user} = useSelector((state) => state.auth);
-  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.tickets);
+  const { user } = useSelector((state) => state.auth);
+  const { isLoading, isError, isSuccess, message } = useSelector((state) => state.tickets);
 
   const [newTicket, setNewTicket] = useState({
-     name: user.name,
-     email: user.email,
-     product: "Phone",
-     description: ""
+    name: user.name,
+    email: user.email,
+    product: "Phone",
+    description: ""
 
   });
-  const {name, email, product, description} = newTicket;
+  const { name, email, product, description } = newTicket;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function NewTicket(){
       toast.error(message);
     }
     if(isSuccess){
-      dispatch(reset);
+      dispatch(reset(reset))
       navigate("/tickets");
     }
     dispatch(reset());
@@ -35,17 +36,16 @@ function NewTicket(){
   }, [dispatch, isError, isSuccess, navigate, message]);
 
   const ticketSubmit = (e) =>{
-     e.preventDefault();
-
-     dispatch(createNewTicket({product, description}));
+    e.preventDefault();
+    dispatch(createNewTicket({product, description}));
   }
 
   const productHandler=({ currentTarget: input }) =>{
-     setNewTicket({ ...newTicket, [input.name]: input.value });
+    setNewTicket({ ...newTicket, [input.name]: input.value });
   }
 
   const descHandler=({ currentTarget: input }) =>{
-     setNewTicket({ ...newTicket, [input.name]: input.value });
+    setNewTicket({ ...newTicket, [input.name]: input.value });
   }
 
   if(isLoading){
@@ -108,4 +108,5 @@ function NewTicket(){
     </>
   )
 }
+
 export default NewTicket;

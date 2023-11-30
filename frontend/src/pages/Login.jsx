@@ -1,22 +1,23 @@
-import { useState, useEffect  } from "react";
-import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
-import { FaSignInAlt } from "react-icons/fa"
-import { useSelector, useDispatch } from "react-redux"
-import { login, reset } from "../features/auth/authSlice"
-import Spinner from '../components/Spinner'
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { FaSignInAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
+
+import { login, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 function Login(){
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-  const {email, password} = data
+  const { email, password } = data
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {user, isLoading, isError, isSuccess, message} = useSelector(state => state.auth);
+  const { user, isLoading, isError, isSuccess, message } = useSelector(state => state.auth);
 
   useEffect(() =>{
     if(isError){
@@ -29,19 +30,13 @@ function Login(){
   },[isError, isSuccess, user, message, navigate, dispatch]);
 
   const handleForm = (e) =>{
-    setData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
+    setData((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   };
 
   const submitForm = (e) =>{
     e.preventDefault();
 
-    const userData = {
-      email,
-      password
-    }
+    const userData ={ email, password }
     dispatch(login(userData));
 
     if(isLoading){
@@ -94,4 +89,5 @@ function Login(){
     </>
   )
 }
+
 export default Login;
